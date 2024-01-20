@@ -1,87 +1,87 @@
-Attribute VB_Name = "»õºÅ¸ÜÑÕÉ«×Ô1"
-Sub InsertPictures»õºÅ¸ÜÑÕÉ«×Ô1()
-    '¶¨Òå±äÁ¿
+Attribute VB_Name = "è´§å·æ é¢œè‰²è‡ª1"
+Sub InsertPicturesè´§å·æ é¢œè‰²è‡ª1()
+    'å®šä¹‰å˜é‡
     
-    '»õºÅÁĞ¡¢ÑÕÉ«ÁĞ¡¢Í¼Æ¬²åÈëÁĞ¡¢Í¼Æ¬Â·¾¶¡¢Í¼Æ¬Ãû³Æ
+    'è´§å·åˆ—ã€é¢œè‰²åˆ—ã€å›¾ç‰‡æ’å…¥åˆ—ã€å›¾ç‰‡è·¯å¾„ã€å›¾ç‰‡åç§°
     Dim No_name, Color_name, Piccolumn, Pic_dir, Product_name As String
 
     Dim picPath As String
     
-    'µ¥Ôª¸ñ¿í¶È¡¢¸ß¶È
+    'å•å…ƒæ ¼å®½åº¦ã€é«˜åº¦
     Dim Pic_ColWidth, Pic_RowHeight As Integer
     
-    'Í¼Æ¬µÄ¿í¶È¡¢¸ß¶È
+    'å›¾ç‰‡çš„å®½åº¦ã€é«˜åº¦
     Dim picWidth, picHeight As Integer
     
-    '¿ªÊ¼ÁĞÊıi¡¢»õºÅ×îºóÒ»ĞĞĞĞºÅ
+    'å¼€å§‹åˆ—æ•°iã€è´§å·æœ€åä¸€è¡Œè¡Œå·
     Dim i, MaxRowCount As Integer
     
-    'µ¥Ôª¸ñ¶ÔÏó»õºÅ¡¢ÑÕÉ«
+    'å•å…ƒæ ¼å¯¹è±¡è´§å·ã€é¢œè‰²
     Dim No_Range, Color_Range As Range
     
     Dim prevNoRange As Variant
     Dim picShapeRange As ShapeRange
     
 
-    'Èİ´í´¦Àí
+    'å®¹é”™å¤„ç†
     On Error Resume Next
 
-    '¹Ø±ÕÆÁÄ»¸üĞÂ£¬ÌáÉıËÙ¶È
+    'å…³é—­å±å¹•æ›´æ–°ï¼Œæå‡é€Ÿåº¦
     'Application.ScreenUpdating = False
     
-    'ÉèÖÃ»õºÅËùÔÚÁĞ
-    No_name = InputBox("ÇëÊäÈë»õºÅËùÔÚÁĞµÄÃû³Æ", "»õºÅÁĞÃû³Æ:", "A")
-    'Èç¹ûÎª¿ÕÔòÍË³ö
+    'è®¾ç½®è´§å·æ‰€åœ¨åˆ—
+    No_name = InputBox("è¯·è¾“å…¥è´§å·æ‰€åœ¨åˆ—çš„åç§°", "è´§å·åˆ—åç§°:", "A")
+    'å¦‚æœä¸ºç©ºåˆ™é€€å‡º
     If No_name = "" Then Exit Sub
 
-    'ÉèÖÃÑÕÉ«ËùÔÚÁĞ
-    Color_name = InputBox("ÇëÊäÈëÑÕÉ«ËùÔÚÁĞµÄÃû³Æ", "ÑÕÉ«ÁĞÃû³Æ:", "C")
-    'Èç¹ûÎª¿ÕÔòÍË³ö
+    'è®¾ç½®é¢œè‰²æ‰€åœ¨åˆ—
+    Color_name = InputBox("è¯·è¾“å…¥é¢œè‰²æ‰€åœ¨åˆ—çš„åç§°", "é¢œè‰²åˆ—åç§°:", "C")
+    'å¦‚æœä¸ºç©ºåˆ™é€€å‡º
     If Color_name = "" Then Exit Sub
     
     
-    'ÉèÖÃÍ¼Æ¬²åÈëÁĞ
-    Piccolumn = InputBox("ÇëÊäÈëÍ¼Æ¬²åÈëËùÔÚÁĞµÄÃû³Æ¡£", "Í¼Æ¬²åÈëÁĞÃû³Æ", "E")
-    'Èç¹ûÎª¿ÕÔòÍË³ö
+    'è®¾ç½®å›¾ç‰‡æ’å…¥åˆ—
+    Piccolumn = InputBox("è¯·è¾“å…¥å›¾ç‰‡æ’å…¥æ‰€åœ¨åˆ—çš„åç§°ã€‚", "å›¾ç‰‡æ’å…¥åˆ—åç§°", "E")
+    'å¦‚æœä¸ºç©ºåˆ™é€€å‡º
     If Piccolumn = "" Then Exit Sub
     
-    'ÉèÖÃÍ¼Æ¬ÎÄ¼ş¼ĞÂ·¾¶
-    Pic_dir = InputBox("ÇëÊäÈëÍ¼Æ¬ÎÄ¼ş´æ·ÅµÄÎÄ¼ş¼ĞÂ·¾¶¡£", "Í¼Æ¬ÎÄ¼ş¼ĞÂ·¾¶", "D:\User\Desktop\ĞÂ½¨ÎÄ¼ş¼Ğ (2)\»õºÅ-ÑÕÉ«")
-    'Èç¹ûÎª¿ÕÔòÍË³ö
+    'è®¾ç½®å›¾ç‰‡æ–‡ä»¶å¤¹è·¯å¾„
+    Pic_dir = InputBox("è¯·è¾“å…¥å›¾ç‰‡æ–‡ä»¶å­˜æ”¾çš„æ–‡ä»¶å¤¹è·¯å¾„ã€‚", "å›¾ç‰‡æ–‡ä»¶å¤¹è·¯å¾„", "D:\User\Desktop\æ–°å»ºæ–‡ä»¶å¤¹ (2)\è´§å·-é¢œè‰²")
+    'å¦‚æœä¸ºç©ºåˆ™é€€å‡º
     If Pic_dir = "" Then Exit Sub
 
-    'ÈôÍ¼Æ¬ÎÄ¼ş¼ĞÂ·¾¶×îºóÃ»ÓĞĞ±¸Ü\£¬Ôò¼ÓÉÏ
+    'è‹¥å›¾ç‰‡æ–‡ä»¶å¤¹è·¯å¾„æœ€åæ²¡æœ‰æ–œæ \ï¼Œåˆ™åŠ ä¸Š
     If Right(Pic_dir, 1) <> "\" Then Pic_dir = Pic_dir & "\"
     
-    'ÉèÖÃµ¥Ôª¸ñµÄ¿í¸ß
+    'è®¾ç½®å•å…ƒæ ¼çš„å®½é«˜
     Pic_ColWidth = 10
     Pic_RowHeight = 60
     
-    '»ñÈ¡»õºÅÇøÓòµÄ×îºóÒ»ĞĞĞĞºÅ
+    'è·å–è´§å·åŒºåŸŸçš„æœ€åä¸€è¡Œè¡Œå·
     MaxRowCount = Cells(Rows.Count, No_name).End(xlUp).Row
     'MsgBox MaxRowCount
     
-    'ÉèÖÃÁĞ¿í
+    'è®¾ç½®åˆ—å®½
     Columns(Piccolumn).ColumnWidth = Pic_ColWidth
-    'MsgBox "ÁĞ¿í" & Pic_ColWidth
+    'MsgBox "åˆ—å®½" & Pic_ColWidth
     
-    'ÉèÖÃĞĞ¸ß
+    'è®¾ç½®è¡Œé«˜
     Rows("2:" & MaxRowCount).RowHeight = Pic_RowHeight
-    'MsgBox "ĞĞ¸ß" & Pic_RowHeight
+    'MsgBox "è¡Œé«˜" & Pic_RowHeight
     
-    'Êı×Ö2ÊÇÉèÖÃ¿ªÊ¼Ìî³äÍ¼Æ¬µÄĞĞºÅÊÇµÚ2ĞĞ
+    'æ•°å­—2æ˜¯è®¾ç½®å¼€å§‹å¡«å……å›¾ç‰‡çš„è¡Œå·æ˜¯ç¬¬2è¡Œ
     For i = 2 To MaxRowCount
                 
-        ' ³õÊ¼»¯ prevNoRange ÎªµÚÒ»¸ö No_Range µÄÖµ£¨Èç¹û´æÔÚ£©
+        ' åˆå§‹åŒ– prevNoRange ä¸ºç¬¬ä¸€ä¸ª No_Range çš„å€¼ï¼ˆå¦‚æœå­˜åœ¨ï¼‰
         If Not IsEmpty(Cells(i, No_name).Value) Then
             prevNoRange = Cells(i, No_name).Value
         End If
         
-        ' »ñÈ¡ No_Range ºÍ Color_Range µÄÖµ
+        ' è·å– No_Range å’Œ Color_Range çš„å€¼
         Set No_Range = Cells(i, No_name)
         Set Color_Range = Cells(i, Color_name)
                 
-        ' ¼ì²é No_Range ÊÇ·ñÎª¿Õ£¬²¢Ê¹ÓÃÉÏÒ»¸öÖµ
+        ' æ£€æŸ¥ No_Range æ˜¯å¦ä¸ºç©ºï¼Œå¹¶ä½¿ç”¨ä¸Šä¸€ä¸ªå€¼
         If No_Range.Value = "" Then
             No_Range.Value = prevNoRange
         Else
@@ -89,37 +89,37 @@ Sub InsertPictures»õºÅ¸ÜÑÕÉ«×Ô1()
         End If
         'MsgBox prevNoRange & Color_Range
         
-        '¶ÁÈ¡Í¼Æ¬ÎÄ¼ş£¬ÓÅÏÈ¶ÁÈ¡jpg¸ñÊ½£¬ÈôÃ»ÓĞ£¬Ôò¶ÁÈ¡jpeg¸ñÊ½£¬ÈôÈÔÈ»Ã»ÓĞ£¬×îºóÔÚ¶ÁÈ¡png¸ñÊ½
+        'è¯»å–å›¾ç‰‡æ–‡ä»¶ï¼Œä¼˜å…ˆè¯»å–jpgæ ¼å¼ï¼Œè‹¥æ²¡æœ‰ï¼Œåˆ™è¯»å–jpegæ ¼å¼ï¼Œè‹¥ä»ç„¶æ²¡æœ‰ï¼Œæœ€ååœ¨è¯»å–pngæ ¼å¼
         picPath = Pic_dir & prevNoRange & "-" & Color_Range & ".jpg"
         'MsgBox picPath
 
         If Dir(picPath) = "" Then
-            '»ñÈ¡jpeg¸ñÊ½Í¼Æ¬
+            'è·å–jpegæ ¼å¼å›¾ç‰‡
             picPath = Pic_dir & prevNoRange & "-" & Color_Range & ".jpeg"
-            '»ñÈ¡png¸ñÊ½Í¼Æ¬
+            'è·å–pngæ ¼å¼å›¾ç‰‡
             If Dir(picPath) = "" Then picPath = Pic_dir & prevNoRange & "-" & Color_Range & ".png"
         End If
         
-        '¼ì²éÎÄ¼şÊÇ·ñ´æÔÚ
+        'æ£€æŸ¥æ–‡ä»¶æ˜¯å¦å­˜åœ¨
         If Dir(picPath) <> "" Then
-            'MsgBox "ÎÄ¼ş´æÔÚ" & picPath
+            'MsgBox "æ–‡ä»¶å­˜åœ¨" & picPath
             
-            '»ñÈ¡·ÅÖÃÍ¼Æ¬µÄµ¥Ôª¸ñ¶ÔÏó
+            'è·å–æ”¾ç½®å›¾ç‰‡çš„å•å…ƒæ ¼å¯¹è±¡
             Set No_Range = Cells(i, Piccolumn)
             
-            'Ñ¡ÖĞµ¥Ôª¸ñ
+            'é€‰ä¸­å•å…ƒæ ¼
             No_Range.Select
 
-            '·½·¨Ò»£¬¿ÉÒÔµÈ±ÈËõ·Å
+            'æ–¹æ³•ä¸€ï¼Œå¯ä»¥ç­‰æ¯”ç¼©æ”¾
             ActiveSheet.Pictures.Insert(picPath).Select
             Set picShapeRange = Selection.ShapeRange
             
-            '»ñÈ¡Í¼Æ¬¿í¸ß
+            'è·å–å›¾ç‰‡å®½é«˜
             picWidth = picShapeRange.Width
             picHeight = picShapeRange.Height
-            'MsgBox "¿í" & picWidth & "¸ß" & picHeight
+            'MsgBox "å®½" & picWidth & "é«˜" & picHeight
             
-            'ÉèÖÃÍ¼Æ¬µÄ¿í¸ß£¬½«Í¼Æ¬¾ÓÖĞ·ÅÖÃ£¬Òò´Ë»¹ĞèÒª¼ÆËãÍ¼Æ¬µÄ±ß¾à
+            'è®¾ç½®å›¾ç‰‡çš„å®½é«˜ï¼Œå°†å›¾ç‰‡å±…ä¸­æ”¾ç½®ï¼Œå› æ­¤è¿˜éœ€è¦è®¡ç®—å›¾ç‰‡çš„è¾¹è·
             If picWidth >= picHeight Then
                 picShapeRange.Width = No_Range.Width - 2
                 picShapeRange.Left = picShapeRange.Left + 1
@@ -130,12 +130,12 @@ Sub InsertPictures»õºÅ¸ÜÑÕÉ«×Ô1()
                 picShapeRange.Left = No_Range.Left + (No_Range.Width - picShapeRange.Width) / 2
             End If
             
-            '·½·¨¶ş
+            'æ–¹æ³•äºŒ
             'Set pic = ActiveSheet.Shapes.AddPicture(picPath, False, True, No_Range.Left, No_Range.Top, -2, -2)
             'pic.Height = No_Range.Height
             'pic.Width = No_Range.Width  '(No_Range.Width - pic.Width) / 2 + No_Range.Left
             
-            '·½·¨Èı£¬¿ÉÒÔÍêÈ«Ìî³äµ¥Ôª¸ñ
+            'æ–¹æ³•ä¸‰ï¼Œå¯ä»¥å®Œå…¨å¡«å……å•å…ƒæ ¼
             'ActiveSheet.Shapes.AddShape(msoShapeRectangle, (No_Range.Left + 1), (No_Range.Top + 1), (No_Range.Width - 1), (No_Range.Height - 1)).Fill.UserPicture picPath
             
         End If
@@ -143,9 +143,9 @@ Sub InsertPictures»õºÅ¸ÜÑÕÉ«×Ô1()
     Next i
     ActiveSheet.Shapes.SelectAll
     
-    'ÉèÖÃ¾ØĞÎ¶ÔÏóÎŞ±ß¿ò
-    Selection.ShapeRange.Line.Visible = msoFalse
+    'è®¾ç½®çŸ©å½¢å¯¹è±¡æ— è¾¹æ¡†
+    'Selection.ShapeRange.Line.Visible = msoFalse
     
-    Application.ScreenUpdating = True
+    'Application.ScreenUpdating = True
 
 End Sub
