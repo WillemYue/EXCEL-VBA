@@ -1,5 +1,5 @@
-Attribute VB_Name = "货号杠颜色自1"
-Sub InsertPictures货号杠颜色自1()
+Attribute VB_Name = "货号杠颜色"
+Sub InsertPictures货号杠颜色()
     '定义变量
     
     '货号列、颜色列、图片插入列、图片路径、图片名称
